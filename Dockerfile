@@ -8,6 +8,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     fonts-dejavu-core \
     fonts-liberation \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Kopiere requirements zuerst (für besseres Caching)
