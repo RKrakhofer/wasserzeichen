@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# Flask
+instance/
+.webassets-cache
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Dokumentation (wird nicht im Container benötigt)
+README.md
+REQUIREMENTS.md
+
+# Temporäre Dateien
+*.log
+uploads/*
+!uploads/.gitkeep
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Test-Bilder
+*.jpg
+*.png
+*.jpeg
+*.gif
+*.bmp
+*.tiff

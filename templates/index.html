@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasserzeichen Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🖼️ Wasserzeichen Generator</h1>
+            <p>Fügen Sie Ihren Bildern ein professionelles, diagonales Wasserzeichen hinzu</p>
+        </header>
+
+        <div class="content">
+            <div class="upload-section">
+                <div id="dropzone" class="dropzone">
+                    <div class="dropzone-content">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <h3>Bild hochladen</h3>
+                        <p>Ziehen Sie ein Bild hierher oder klicken Sie zum Auswählen</p>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        <button type="button" class="btn-select" onclick="document.getElementById('fileInput').click()">
+                            Datei auswählen
+                        </button>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="form-group">
+                        <label for="watermarkText">Wasserzeichen-Text:</label>
+                        <input 
+                            type="text" 
+                            id="watermarkText" 
+                            placeholder="z.B. Copyright 2025 - Mein Name"
+                            maxlength="100"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="opacity">Transparenz: <span id="opacityValue">50%</span></label>
+                        <input 
+                            type="range" 
+                            id="opacity" 
+                            min="0" 
+                            max="255" 
+                            value="128"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color">Textfarbe:</label>
+                        <div class="color-picker-wrapper">
+                            <input 
+                                type="color" 
+                                id="color" 
+                                value="#FFFFFF"
+                                class="color-input"
+                            >
+                            <span id="colorValue">#FFFFFF</span>
+                        </div>
+                    </div>
+
+                    <button id="processBtn" class="btn-primary" disabled>
+                        Wasserzeichen hinzufügen
+                    </button>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div id="previewContainer" class="preview-container" style="display: none;">
+                    <h3>Vorschau:</h3>
+                    <div class="image-wrapper">
+                        <img id="previewImage" alt="Vorschau">
+                    </div>
+                    <button id="downloadBtn" class="btn-download">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Bild herunterladen
+                    </button>
+                </div>
+
+                <div id="originalPreview" class="original-preview" style="display: none;">
+                    <h3>Original:</h3>
+                    <div class="image-wrapper">
+                        <img id="originalImage" alt="Original">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Verarbeite Bild...</p>
+        </div>
+
+        <div id="error" class="error" style="display: none;"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
